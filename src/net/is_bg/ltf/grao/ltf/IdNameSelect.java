@@ -138,6 +138,44 @@ abstract class IdNameSelect<T extends INameIdParent> extends SelectSqlStatement{
 	
 	
 	
+	static IdNameSelect<INameIdParent> getCityStreetSelectByCityStreetCode(final String cityCode, final String streetCode){
+		return new IdNameSelect<INameIdParent>() {
+			List<INameIdParent> result = new ArrayList<INameIdParent>();
+			@Override
+			List<INameIdParent> getReuslt() {
+				return result;
+			}
+
+			@Override
+			protected String getSqlString() {
+				return " select street_id id, city_id city_id, street.name n from street \r\n" + 
+						" where city_id = ? \r\n" + 
+						" and ekkpa  = ? " ;
+			}
+			
+			@Override
+			protected void setParameters(PreparedStatement prStmt) throws SQLException {
+				bindVarData.setLong(Long.valueOf(cityCode));
+				bindVarData.setString(streetCode);
+				bindVarData.setParameters(prStmt);
+			}
+			
+			@Override
+			protected void retrieveResult(ResultSet rs) throws SQLException {
+				while (rs.next()) {
+					NameIdParent p = new NameIdParent();
+					p.id = rs.getLong("id");
+					p.name = rs.getString("n");
+					p.parentId = rs.getLong("city_id");
+					result.add(p);
+				}
+			}
+		};
+	}
+	
+	
+	
+	
 	static IdNameSelect<AdminRegion> getAdmregionSelect(){
 		return new IdNameSelect<AdminRegion>() {
 			List<AdminRegion> result = new ArrayList<AdminRegion>();

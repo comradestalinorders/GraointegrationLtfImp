@@ -269,7 +269,8 @@ class AddressTree implements IAddressResolver {
 			//valid up to street including street
 			if(bValidCity && bValidStreet){
 				//resolve street & city by direct match
-				INameIdParent cityStreet = resolveCityStreet(graoAddress.getCity(), graoAddress.getStreet());
+				INameIdParent cityStreet = resolveCityStreetByCityCodeStreetCode(graoAddress.getCityCode(), graoAddress.getStreetCode());
+				cityStreet = (cityStreet == null ? resolveCityStreet(graoAddress.getCity(), graoAddress.getStreet()) : cityStreet);
 				if(cityStreet!= null){
 					fillAddressByStreetIdCityId(cityStreet.getId(), cityStreet.getParentId(), adr);
 					fillAdminRegion(graoAddress.getCity(), graoAddress.getMunicipality(), cityStreet.getId(), adr);
@@ -537,6 +538,18 @@ class AddressTree implements IAddressResolver {
 			return StoredProcedures.strToNameIdParent(res);
 		}
 		
+		
+		/***
+		 * Try to load street id & city Id by city code & street code!
+		 * @param cityCode
+		 * @param streetCode
+		 * @return
+		 */
+		private INameIdParent resolveCityStreetByCityCodeStreetCode(String cityCode, String streetCode) {
+			if(cityCode == null || cityCode.equals("") || streetCode == null || streetCode.equals("")) return null;
+			List<INameIdParent> res =   LoadingUtils.loadStreetByStreetCityCode(cityCode, streetCode);
+			return res == null || res.size() == 0 ? null : res.get(0);
+		}
 	    
 	    /**
 	     * Try to find street for cityId by graoStreetName!

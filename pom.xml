@@ -29,10 +29,23 @@
 				<version>1.18</version>
 		</dependency>
 		
+		
+		<dependency>
+			<groupId>dblib</groupId>
+			<artifactId>dblib</artifactId>
+			<version>1.2.6005</version>
+		</dependency>
+		
+		<dependency>
+			<groupId>org.postgresql</groupId>
+			<artifactId>postgresql</artifactId>
+			<version>42.2.1.jre7</version>
+		</dependency>
+		
 		<dependency>
 			<groupId>net.is_bg.ltfn.grao</groupId>
 			<artifactId>GraoIntegrationIface</artifactId>
-			<version>2.34</version>
+			<version>2.35</version>
 		</dependency>
 		
 		<dependency>

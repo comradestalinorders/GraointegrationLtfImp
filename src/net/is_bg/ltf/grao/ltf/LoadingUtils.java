@@ -78,6 +78,17 @@ class LoadingUtils {
 		return sel.getReuslt();
 	}
 	
+	/***
+	 * Loads city & street as a parent child by city code & street code!
+	 * @param cityCode
+	 * @param streetCode
+	 * @return
+	 */
+	static List<INameIdParent> loadStreetByStreetCityCode(String cityCode, String streetCode){
+		IdNameSelect<INameIdParent> sel = IdNameSelect.getCityStreetSelectByCityStreetCode(cityCode, streetCode);
+		new DBExecutor(DBConfig.getConnectionFactory()).execute(sel);
+		return sel.getReuslt();
+	}
 
 	/***
 	 * Load city admin regions map
