@@ -8,6 +8,7 @@ import java.util.List;
 import javax.faces.event.ActionEvent;
 import org.richfaces.event.UploadEvent;
 
+import grao.integration.config.IGraoConfigBean;
 import net.is_bg.ltf.AbstractManagedBean;
 import net.is_bg.ltf.AppConstants;
 import net.is_bg.ltf.FileUploadBaseBean;
@@ -17,7 +18,7 @@ import net.is_bg.ltf.grao.ltf.massive.client.sqlstatements.GraoConfig;
 import net.is_bg.ltf.grao.ltf.massive.client.sqlstatements.GraoConfigSelect;
 import net.is_bg.ltf.update.log.UpdaterReg;
 
-public class GraoConfigBean extends AbstractManagedBean {
+public class GraoConfigBean extends AbstractManagedBean implements IGraoConfigBean {
 	/**
 	 * 
 	 */
@@ -188,5 +189,10 @@ public class GraoConfigBean extends AbstractManagedBean {
     
     public void refresh() {
     	
+    }
+    
+    @Override
+    public long getRefreshTimeMillies() {
+    	return 15000;
     }
 }
