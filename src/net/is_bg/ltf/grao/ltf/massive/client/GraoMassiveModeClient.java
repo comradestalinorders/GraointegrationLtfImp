@@ -107,7 +107,8 @@ public class GraoMassiveModeClient {
 			new ConnectionProperties(PGR_DRIVER, URL_SOFIA_MERGE3, "sofiamerge3", "12345", "sofiamerge3"),  //10
 			new ConnectionProperties(PGR_DRIVER,"jdbc:postgresql://10.0.10.143:5432/asn", "asn", "asn", ""), //11
 			new ConnectionProperties(PGR_DRIVER,"jdbc:postgresql://10.0.10.131:5432/krl", "krl", "krl", ""),  //12
-			new ConnectionProperties(PGR_DRIVER,"jdbc:postgresql://10.240.110.70:5432/pdv", "pdv", "pdv", "")  //13
+			new ConnectionProperties(PGR_DRIVER,"jdbc:postgresql://10.240.110.70:5432/pdv", "pdv", "pdv", ""),  //13
+			new ConnectionProperties(PGR_DRIVER,"jdbc:postgresql://172.17.72.21:5432/vratsa", "vratsa", "12345", "")  //14
 	};
 	
 	//call services for configuration name
