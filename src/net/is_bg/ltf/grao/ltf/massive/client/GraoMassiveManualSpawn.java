@@ -6,7 +6,6 @@ import net.is_bg.ltf.ApplicationGlobals;
 import net.is_bg.ltf.Semaphore;
 import net.is_bg.ltf.db.common.DBExecutor;
 import net.is_bg.ltf.grao.InitGraoClientLib;
-import net.is_bg.ltf.init.InitGraoClient;
 import net.is_bg.ltf.init.ContextParamLoader.CONTEXTPARAMS;
 import net.is_bg.ltf.update.register.dao.DataSourceServiceConnectionFactory;
 import taskscheduler.ScheduledTask;
@@ -33,7 +32,7 @@ class GraoMassiveManualSpawn implements Serializable {
 	void processFileData(final String dsName, final byte [] fileContent, final long flags, final boolean spawnProc) {
 		synchronized(GraoConfigBean.class) {
 			//get automatic task for current database
-			ScheduledTask tt = InitGraoClient.getScheduledTaskbyDsName(AppUtil.getVisit().getDefDbConn());
+			ScheduledTask tt = InitGraoClientLib.getScheduledTaskbyDsName(AppUtil.getVisit().getDefDbConn());
 			if((tt == null || !tt.isRunning()) && !s.isSignalled()) {
 				//start processing thread
 				Thread t = new Thread(new Runnable() {

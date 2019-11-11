@@ -32,7 +32,7 @@ import net.is_bg.ltf.grao.ltf.massive.client.GraoMassiveModeClient;
 		
 		//create db executor
 		DBExecutor ex = new DBExecutor(DBConfig.getConnectionFactory());
-		byte [] fileData = loadFile(new File("D:\\grao03_0.grao"));
+		byte [] fileData = loadFile(new File("D:\\grao05_0.grao"));
 		GraoMassiveModeClient.processUploadedFileContent(ex, fileData, 0, false);
 	}
 	
